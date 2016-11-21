@@ -1,4 +1,5 @@
 package repository;
+
 import java.io.IOException;
 import java.sql.*;
 
@@ -36,8 +37,8 @@ public class AnimalTypeRepository {
     public int getTypeID(String text) throws SQLException {
         // create a prepared statement
         PreparedStatement ps = conn.prepareStatement(
-                        "SELECT animal_type_id " +
-                                "FROM animal_type " +
+                "SELECT animal_type_id " +
+                        "FROM animal_type " +
                         "WHERE species = ?"
         );
 
@@ -47,11 +48,12 @@ public class AnimalTypeRepository {
         // execute the query
         ps.execute();
         ResultSet resultSet = ps.getResultSet();
-        while(resultSet.next()){
-            return resultSet.getInt("animal_type_id");}
+        while (resultSet.next()) {
+            return resultSet.getInt("animal_type_id");
+        }
 
-            System.out.println("\nError: Please choose from an existing animal type.");
-            return -1;
+        System.out.println("\nError: Please choose from an existing animal type.");
+        return -1;
 
     }
 
